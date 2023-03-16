@@ -1,16 +1,13 @@
 import * as fs from 'fs';
 import * as path from 'path';
 
-// 判断是否是开发环境
-const isProd = process.env.NODE_ENV === 'production';
-
 function parseEnv() {
   // 引入文件
-  const localEnv = path.resolve('config/env/.env');
+  const localEnv = path.resolve('env/.env');
   // 引入线上环境文件
-  const prodEnv = path.resolve('config/env/.env.production');
+  const prodEnv = path.resolve('env/.env.production');
   // 引入开发环境文件
-  const devEnv = path.resolve('config/env/.env.development');
+  const devEnv = path.resolve('env/.env.development');
 
   if (
     !fs.existsSync(localEnv) &&
@@ -20,8 +17,9 @@ function parseEnv() {
     throw new Error('缺少环境配置文件');
   }
 
-  // 判断是开发环境还是线上环境从而返回对应的 filePath
-  const filePath = isProd && fs.existsSync(prodEnv) ? prodEnv : devEnv;
+  // 判断当前环境是否存在开发环境 .env 文件，若存在则为开发环境，若不存在则为生产环境并返回对应的 filePath
+  const filePath = fs.existsSync(devEnv) ? devEnv : prodEnv;
+  console.log(filePath);
   return { path: filePath };
 }
 
