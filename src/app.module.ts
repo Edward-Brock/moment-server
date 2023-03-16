@@ -4,6 +4,7 @@ import { AppService } from './app.service';
 import { ConfigModule, ConfigService } from '@nestjs/config';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import envConfig from './config/env';
+import { OptionModule } from './module/option/option.module';
 
 @Module({
   imports: [
@@ -28,6 +29,7 @@ import envConfig from './config/env';
         autoLoadEntities: true,
       }),
     }),
+    OptionModule,
   ],
   controllers: [AppController],
   providers: [AppService],
