@@ -3,11 +3,11 @@ import * as path from 'path';
 
 function parseEnv() {
   // 引入文件
-  const localEnv = path.resolve('env/.env');
+  const localEnv = path.resolve('.env');
   // 引入线上环境文件
-  const prodEnv = path.resolve('env/.env.production');
+  const prodEnv = path.resolve('.env.production');
   // 引入开发环境文件
-  const devEnv = path.resolve('env/.env.development');
+  const devEnv = path.resolve('.env.development');
 
   if (
     !fs.existsSync(localEnv) &&
