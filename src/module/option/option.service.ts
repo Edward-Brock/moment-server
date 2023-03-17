@@ -12,7 +12,22 @@ export class OptionService {
     private optionRepository: Repository<OptionEntity>,
   ) {}
 
-  create(createOptionDto: CreateOptionDto) {
+  async create(createOptionDto: CreateOptionDto) {
+    /**
+     * 查询 option 数据表查找是否存在相同 option_name 的数据
+     * 存在则返回错误，不存在进行存储
+     */
+    const isOptionName = await this.optionRepository.findOneBy({
+      option_name: createOptionDto.option_name,
+    });
+    // 如果存在相同数据返回错误信息
+    if (isOptionName) {
+      return {
+        type: 'error',
+        msg: createOptionDto.option_name + ' 已存在',
+      };
+    }
+    // 不存在相同数据进行正常存储
     return this.optionRepository.save(createOptionDto);
   }
 
