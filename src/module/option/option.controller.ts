@@ -1,4 +1,12 @@
-import { Controller, Get, Post, Body, Patch, Param, Delete } from '@nestjs/common';
+import {
+  Controller,
+  Get,
+  Post,
+  Body,
+  Patch,
+  Param,
+  Delete,
+} from '@nestjs/common';
 import { OptionService } from './option.service';
 import { CreateOptionDto } from './dto/create-option.dto';
 import { UpdateOptionDto } from './dto/update-option.dto';
@@ -30,5 +38,23 @@ export class OptionController {
   @Delete(':id')
   remove(@Param('id') id: string) {
     return this.optionService.remove(+id);
+  }
+
+  /**
+   * 更新 option 中的 moment_password 密码接口
+   * @param id
+   * @param updateOptionDto
+   */
+  @Patch('updatePassword/:id')
+  updatePassword(
+    @Param('id') id: string,
+    @Body() updateOptionDto: UpdateOptionDto,
+  ) {
+    return this.optionService.updatePassword(+id, updateOptionDto);
+  }
+
+  @Post('auth')
+  auth(@Body() authParam: any) {
+    return `6`;
   }
 }
