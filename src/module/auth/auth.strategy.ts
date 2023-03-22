@@ -14,10 +14,11 @@ export class AuthStrategy extends PassportStrategy(Strategy) {
   }
 
   async validate(payload: any): Promise<any> {
-    if (!payload.option_name && !payload.password) {
+    console.log(payload.option_value);
+    if (!payload.option_value) {
       return false;
     }
     //返回后可在req中得到返回的值
-    return { password: payload.password };
+    return { option_value: payload.option_value };
   }
 }

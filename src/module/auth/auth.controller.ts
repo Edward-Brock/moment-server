@@ -4,12 +4,13 @@ import { AuthService } from './auth.service';
 
 @Controller('auth')
 export class AuthController {
-  constructor(private readonly authService: AuthService) {}
+  constructor(private readonly authService: AuthService) {
+  }
 
   //使用jwt验证token的端口
   @UseGuards(AuthGuard('jwt'))
   @Post('tryToken')
-  aPost(@Req() req) {
+  backInfo(@Req() req) {
     return req.user;
   }
 
