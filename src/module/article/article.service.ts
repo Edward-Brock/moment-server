@@ -17,7 +17,11 @@ export class ArticleService {
   }
 
   findAll() {
-    return this.articleRepository.find();
+    return this.articleRepository.find({
+      order: {
+        article_date: 'DESC',
+      },
+    });
   }
 
   findOne(id: number) {

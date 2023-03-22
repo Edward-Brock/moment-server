@@ -14,7 +14,6 @@ export class AuthStrategy extends PassportStrategy(Strategy) {
   }
 
   async validate(payload: any): Promise<any> {
-    console.log(payload.option_value);
     if (!payload.option_value) {
       return false;
     }
