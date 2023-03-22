@@ -31,4 +31,13 @@ export class ArticleService {
   remove(id: number) {
     return this.articleRepository.delete(id);
   }
+
+  async updateArticleLike(id: number) {
+    const articleLike = await this.articleRepository.findOneBy({
+      article_id: id,
+    });
+    // articleLike.article_like++
+    articleLike.article_like++;
+    return this.articleRepository.update(id, articleLike);
+  }
 }

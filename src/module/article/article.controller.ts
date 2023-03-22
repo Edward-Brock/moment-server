@@ -44,4 +44,9 @@ export class ArticleController {
   remove(@Param('id') id: string) {
     return this.articleService.remove(+id);
   }
+
+  @Post('/like/:id')
+  updateArticleLike(@Param('id') id: string) {
+    return this.articleService.updateArticleLike(+id);
+  }
 }
