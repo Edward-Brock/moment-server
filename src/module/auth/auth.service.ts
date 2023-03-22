@@ -12,7 +12,6 @@ export class AuthService {
 
   async createToken(user) {
     const payload = {
-      option_name: user.option_name,
       option_value: user.password,
     };
     const option: any = await this.optionService.findOne(4);
@@ -22,6 +21,7 @@ export class AuthService {
         return { code: 1, msg: '登录失败', data: '' };
       }
       return {
+        code: 0,
         msg: '登录成功',
         data: {
           token: this.jwtService.sign(payload),
