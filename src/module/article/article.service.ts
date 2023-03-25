@@ -13,6 +13,7 @@ export class ArticleService {
   ) {}
 
   async create(createArticleDto: CreateArticleDto) {
+    createArticleDto.article_date = createArticleDto.create_time = new Date();
     return this.articleRepository.save(createArticleDto);
   }
 

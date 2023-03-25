@@ -1,3 +1,5 @@
+import * as process from 'process';
+
 export const jwtConstants = {
-  secret: 'Moment-Booop.03/18/2023?',
+  secret: `${process.env.JWT_SECRET}`,
 };
